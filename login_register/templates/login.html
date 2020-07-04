@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'login/whatproject.ico' %}" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="{%  static 'login/css/style.css' %}">
+  <title>login</title>
+</head>
+
+<body
+  style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{% static 'login/img/bg.png' %}');">
+  {#  popovers #}
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <div class="pstack">
+    <div class="black-box"></div>
+    {% if messages %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    {% for mess in messages %}
+    {% if "successfully" in mess.message %}
+    <script>toastr.success("{{ mess.message }}")</script>
+    {% elif "Invalid" in mess.message%}
+    <script>toastr.error("{{ mess.message }}")</script>
+    {% endif%}
+
+    {% endfor %}
+
+    {% endif %}
+    <div class="form-box">
+      <h1>Sign In</h1>
+      <h2>
+        New user?
+        <a href="/signup" id="create">Create an account</a>
+      </h2>
+
+      <form method="POST" action=''>
+        {% csrf_token %}
+        <div class="txtb">
+          <input type="text" name="Username" required oninvalid="setCustomValidity('Username cannot Be empty')"
+            oninput="setCustomValidity('')" />
+          <span data-placeholder="Username"></span>
+        </div>
+        <div class="txtb">
+          <input type="password" name="Password" required oninvalid="setCustomValidity('Password cannot Be empty')"
+            oninput="setCustomValidity('')" />
+          <span data-placeholder="Password"></span>
+        </div>
+        <p>{{error}}</p>
+        <div class="fpa">
+          <a id="fp" href="#">Forget password?</a>
+        </div>
+        <div class="signin-div">
+          <input class="sigin" type="submit" value="Sign in" />
+        </div>
+      </form>
+      <h3>Or</h3>
+      <div class="signin-div">
+
+        <button class="gsigin">
+          <img id="gicon" src="{% static 'login/img/icon/icon-google.png' %}" style="padding-right: 8px;" />
+          <p style="display: inline; font-size: 1rem;"> Sign in with Google</p>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script>
+    $(".txtb input").on("focus", function () {
+      $(this).addClass("focus");
+
+    });
+
+    $(".txtb input").on("blur", function () {
+      if ($(this).val() == "")
+        $(this).removeClass("focus");
+    });
+  </script>
+</body>
+
+</html>
