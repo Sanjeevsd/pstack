@@ -6,7 +6,7 @@
         {% load static %}
         {% if user.is_authenticated %}
         <div class="navlogo">
-            <a class="side-links" href="/">
+            <a class="side-links" href="#">
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="116" height="60" viewBox="0 0 146 75">
                     <g>
@@ -40,7 +40,7 @@
         <ul class="sidebar-nav verticleline">
 
             <li class="side-item active">
-                <a class="side-link" href="/">
+                <a class="side-link" href="#">
                     <span class="side-txt">Home</span>
                     <svg id="testing" xmlns="http://www.w3.org/2000/svg" width="80%" height="33" viewBox="0 0 100% 33">
                         <defs>
@@ -56,19 +56,13 @@
                             </g>
                         </g>
                     </svg>
-                    <svg id="bulb" xmlns="http://www.w3.org/2000/svg" width="7" height="33" viewBox="0 0 8 33">
-                        <g>
-                            <g>
-                                <path fill="#e5e5e5" d="M0 33V0h8v33z" />
-                            </g>
-                        </g>
-                    </svg>
+
 
                 </a>
 
             </li>
-            <li class="side-item">
-                <a class="side-link" href="/user.html">
+            <li class="side-item ">
+                <a class="side-link" href="#">
                     <span class="side-txt">User Profile</span>
                     <svg id="testing" xmlns="http://www.w3.org/2000/svg" width="80%" height="33" viewBox="0 0 100% 33">
                         <defs>
@@ -84,17 +78,10 @@
                             </g>
                         </g>
                     </svg>
-                    <svg id="bulb" xmlns="http://www.w3.org/2000/svg" width="7" height="33" viewBox="0 0 8 33">
-                        <g>
-                            <g>
-                                <path fill="#e5e5e5" d="M0 33V0h8v33z" />
-                            </g>
-                        </g>
-                    </svg>
 
                 </a>
-            </li class="side-item">
-            <li class="side-item">
+            </li>
+            <li class="side-item ">
                 <a class="side-link" href="#">
                     <span class="side-txt">Projects</span>
                     <svg id="testing" xmlns="http://www.w3.org/2000/svg" width="80%" height="33" viewBox="0 0 100% 33">
@@ -108,13 +95,6 @@
                         <g>
                             <g opacity=".35">
                                 <path id="anilight" fill="url(#qjtpa)" d="M234 7.574V0H-1v33h235z" />
-                            </g>
-                        </g>
-                    </svg>
-                    <svg id="bulb" xmlns="http://www.w3.org/2000/svg" width="7" height="33" viewBox="0 0 8 33">
-                        <g>
-                            <g>
-                                <path fill="#e5e5e5" d="M0 33V0h8v33z" />
                             </g>
                         </g>
                     </svg>
@@ -138,13 +118,6 @@
                             </g>
                         </g>
                     </svg>
-                    <svg id="bulb" xmlns="http://www.w3.org/2000/svg" width="7" height="33" viewBox="0 0 8 33">
-                        <g>
-                            <g>
-                                <path fill="#e5e5e5" d="M0 33V0h8v33z" />
-                            </g>
-                        </g>
-                    </svg>
 
                 </a>
             </li>
@@ -164,15 +137,11 @@
                             </g>
                         </g>
                     </svg>
-                    <svg id="bulb" xmlns="http://www.w3.org/2000/svg" width="7" height="33" viewBox="0 0 8 33">
-                        <g>
-                            <g>
-                                <path fill="#e5e5e5" d="M0 33V0h8v33z" />
-                            </g>
-                        </g>
-                    </svg>
+
 
                 </a>
+
+
             </li>
             <li class="side-item">
                 <a class="side-link" href="#">
@@ -191,14 +160,6 @@
                             </g>
                         </g>
                     </svg>
-                    <svg id="bulb" xmlns="http://www.w3.org/2000/svg" width="7" height="33" viewBox="0 0 8 33">
-                        <g>
-                            <g>
-                                <path fill="#e5e5e5" d="M0 33V0h8v33z" />
-                            </g>
-                        </g>
-                    </svg>
-
                 </a>
             </li>
 
@@ -220,16 +181,10 @@
                             </g>
                         </g>
                     </svg>
-                    <svg id="bulb" xmlns="http://www.w3.org/2000/svg" width="7" height="33" viewBox="0 0 8 33">
-                        <g>
-                            <g>
-                                <path fill="#e5e5e5" d="M0 33V0h8v33z" />
-                            </g>
-                        </g>
-                    </svg>
-
                 </a>
             </li>
+
+            <div class="anibulb"></div>
         </ul>
         {% else %}
         <img src="{% static 'assets/img/whatproject.png' %}"

@@ -1,0 +1,167 @@
+:root{
+    font-size: 16px;
+     font-family: 'Source Sans Pro';
+     --text-primary: #E5E5E5;
+     --text-secondary: #D0AC6E;
+     --bg-primary:#060608;
+     --bg-secondary:#424249;
+   }
+.navigations{
+    position: fixed;
+    padding: 1rem;
+	width: calc(100% - 17rem);
+	right: 0;
+    background-color: var(--bg-primary);
+    height: 4rem;
+    align-items: right;
+}
+.topnav {
+	display: fixed;
+	float: right;
+	align-items: center;
+	align-content: center;
+	margin-top: .5rem;
+	text-align: right;
+	width: 35rem;
+	overflow: hidden;
+	flex-direction: row;
+	height: 2.5rem;
+	background-color: transparent;
+  }
+
+ .bellicon{
+	display: flex;
+	float: right;
+	 outline: none;
+	transition: ease 0.2s;
+	margin : 0.5rem 0.5rem 0.2rem 0.2rem;
+	margin-left: 1rem;
+	
+ }
+
+.bellicon:hover #bell{
+fill: white;
+}
+.searchform{
+	display: flex;
+	float: right;
+	align-content: center;
+}
+input[type="text"] {
+	height: 2rem;
+	margin-top: 0.2rem;
+	position: absolute;
+	font-size: 1rem;
+	display: flex;
+	border: none;
+	border-radius: 2rem;
+	line-height: 1rem;
+	outline: none;
+	color: white;
+	padding: 0.1rem;
+	padding-left:1rem;
+	right: 11.5rem;
+	padding-right: 2rem;
+	width: 0;
+	float: right;
+	background:transparent;
+	z-index: 3;
+	transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+	cursor: pointer;
+  }
+  
+  input[type="text"]:focus:hover {
+	border-bottom: 1px solid #BBB;
+  }
+  
+  input[type="text"]:focus {
+	width: 30rem;
+	background: var(--bg-secondary);
+	z-index: 1;
+	border-bottom: 1px solid #BBB;
+	cursor: text;
+  }
+  input[type="submit"] {
+	height: 2rem;
+	width: 2rem;
+	margin-top: 0.3rem;
+	display: flex;
+	border: none;
+	border-radius: 2rem;
+	float: right;
+	z-index: 2;
+	cursor: pointer;
+	transition:  .4s ease;
+  }
+  
+  input[type="submit"]:hover {
+opacity: 0.5;
+  }
+  .dropdown {
+	float: right;
+	margin-left: 1rem;
+	overflow: hidden;
+	
+  }
+  .dropdown a {
+	float: right;
+	font-size: 1rem;
+	color: white;
+	text-align: center;
+	padding: 0.5 0.8rem;
+	text-decoration: none;
+  }
+
+  .dropdown .dropbtn {
+	font-size: 1rem;
+	min-width: 7rem;
+	text-align: center;
+	color: var(--bg-secondary);
+	border: 0.1rem;
+	border-style: ridge;
+
+	border-color: var(--bg-secondary);
+	padding: 0.5rem 0.8rem;
+	background-color: inherit;
+	font-family: inherit; /* Important for vertical align on mobile phones */
+	margin: 0; /* Important for vertical align on mobile phones */
+  }
+  
+  /* Add a red background color to navbar links on hover */
+  .navbar a:hover, .dropdown:hover .dropbtn {
+	  border: none;
+	background-color: var(--bg-primary);
+	color: white;
+  }
+  
+  /* Dropdown content (hidden by default) */
+  .dropdown-content {
+	display: none;
+	color: var(--bg-secondary);
+	position: absolute;
+	background-color: var(--bg-primary);
+	max-width: 7rem;
+	box-shadow: 0px 1px 1px 0px rgba(209, 201, 201, 0.2);
+	z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+	float: none;
+	font-size: 1rem;
+	color: var(--bg-secondary);
+	padding: 0.5rem 0.8rem;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+  }
+  
+  /* Add a grey background color to dropdown links on hover */
+  .dropdown-content a:hover {
+	color: white;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+	display: block;
+  }

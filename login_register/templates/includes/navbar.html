@@ -1,0 +1,27 @@
+<div class="navigations">
+    <div class="topnav">
+        <div class="dropdown">
+            <button class="dropbtn">User
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="#">User Profile</a>
+                <a href="#">Logout</a>
+
+            </div>
+        </div>
+        <a href="#" class="bellicon"> <svg xmlns="http://www.w3.org/2000/svg" width="20.513" height="25"
+                viewBox="0 0 20.513 25">
+                <path id="bell"
+                    d="M16.256,28.75a2.572,2.572,0,0,0,2.564-2.564H13.692A2.563,2.563,0,0,0,16.256,28.75Zm7.692-7.692v-6.41c0-3.936-2.1-7.231-5.769-8.1V5.673a1.923,1.923,0,0,0-3.846,0v.872c-3.679.872-5.769,4.154-5.769,8.1v6.41L6,23.622V24.9H26.513V23.622Z"
+                    transform="translate(-6 -3.75)" fill="#5d5d5d" />
+            </svg></a>
+
+        {% load static %}
+        <form class="searchform" action="" autocomplete="on">
+            <input id="search" name="search" type="text" placeholder="Search"><input id="search_submit" value=""
+                type="submit" style="background: url('{% static 'login/img/search.svg' %}') center center no-repeat;">
+        </form>
+    </div>
+
+</div>
