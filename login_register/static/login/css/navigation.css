@@ -9,11 +9,21 @@
 .navigations{
     position: fixed;
     padding: 1rem;
-	width: calc(100% - 17rem);
+	width: calc(100% - 18rem);
 	right: 0;
-    background-color: var(--bg-primary);
-    height: 4rem;
-    align-items: right;
+    background-color:var(--bg-primary);
+    height: 4.5rem;
+	align-items: right;
+
+	
+}
+.navborder{
+	position: absolute;
+	right: 10rem;
+	left: 0rem;
+	width: calc(100% - 14rem);
+	bottom: 0.5rem;
+	border-bottom: 0.01rem solid var(--bg-secondary);
 }
 .topnav {
 	display: fixed;
@@ -70,15 +80,29 @@ input[type="text"] {
 	cursor: pointer;
   }
   
-  input[type="text"]:focus:hover {
-	border-bottom: 1px solid #BBB;
+  input[type="text"]::-webkit-input-placeholder{
+	  position: absolute;
+	  transform: translateY(15rem);
+	  opacity: 0;
+	
+	
+	transition: 0.5s;
+	  
   }
+  input[type="text"]:focus::-webkit-input-placeholder{
+	opacity: 1;
+	transform: translateY(0);
+	
+	-webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+}
   
   input[type="text"]:focus {
 	width: 30rem;
 	background: var(--bg-secondary);
 	z-index: 1;
-	border-bottom: 1px solid #BBB;
+	
 	cursor: text;
   }
   input[type="submit"] {
@@ -117,9 +141,8 @@ opacity: 0.5;
 	min-width: 7rem;
 	text-align: center;
 	color: var(--bg-secondary);
-	border: 0.1rem;
-	border-style: ridge;
-
+	
+	border: solid 0.08rem;
 	border-color: var(--bg-secondary);
 	padding: 0.5rem 0.8rem;
 	background-color: inherit;
@@ -141,7 +164,8 @@ opacity: 0.5;
 	position: absolute;
 	background-color: var(--bg-primary);
 	max-width: 7rem;
-	box-shadow: 0px 1px 1px 0px rgba(209, 201, 201, 0.2);
+border: solid 0.08rem;
+border-color: var(--bg-secondary);
 	z-index: 1;
   }
   
@@ -165,3 +189,15 @@ opacity: 0.5;
   .dropdown:hover .dropdown-content {
 	display: block;
   }
+
+.postfilter{
+bottom: 0.6rem;
+position: absolute;
+left: 0rem;
+}
+#postfilter{
+	cursor: pointer;
+}
+#postfilter:hover #filter-2{
+fill: white;
+}

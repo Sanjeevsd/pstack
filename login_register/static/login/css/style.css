@@ -261,9 +261,14 @@ h3:after {
 }
 
 .main{
-  margin-left: 15rem;
+  position: absolute;
+  z-index: -1;
+  margin-top: 6rem;
+  margin-left: 16rem;
   background-color: var(--bg-primary);
-  padding: 1rem;
+  padding-top: 0.5rem;
+  color: wheat;
+
 }
 @media(max-width:1025px){
   .form-box{
