@@ -70,7 +70,7 @@
     transform: scaleX(0);
     visibility: hidden;
     
-    transition: ease-in 300ms;
+    transition: ease 300ms;
     transition-delay: 100ms;
     transform-origin: right;
   }

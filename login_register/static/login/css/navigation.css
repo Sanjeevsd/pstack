@@ -141,7 +141,6 @@ opacity: 0.5;
 	min-width: 7rem;
 	text-align: center;
 	color: var(--bg-secondary);
-	
 	border: solid 0.08rem;
 	border-color: var(--bg-secondary);
 	padding: 0.5rem 0.8rem;
@@ -164,8 +163,8 @@ opacity: 0.5;
 	position: absolute;
 	background-color: var(--bg-primary);
 	max-width: 7rem;
-border: solid 0.08rem;
-border-color: var(--bg-secondary);
+	border: solid 0.08rem;
+	border-color: var(--bg-secondary);
 	z-index: 1;
   }
   
@@ -200,4 +199,47 @@ left: 0rem;
 }
 #postfilter:hover #filter-2{
 fill: white;
+}
+
+.filterdrop{
+	display: none;
+	color: var(--bg-secondary);
+	position: absolute;
+	background-color: var(--bg-primary);
+	max-width: fit-content;
+	border: solid 0.08rem;
+	z-index: 1;
+	border-top: none;
+	border-color: var(--bg-secondary);
+}
+.filterdrop a{
+	float: none;
+	font-size: 1rem;
+	color: var(--bg-secondary);
+	margin-left: 0.5rem;
+	padding-right: 0.2rem;
+	margin-top: 0.2rem;
+	text-decoration: none;
+	display: block;
+	text-align: left;}
+.filterdrop .sortby{
+	display: block;
+	margin-top: 0.2rem;
+	margin-left: 0.5rem;
+	font-size: 1.2rem;
+	color: white;
+	padding-bottom: 0.3rem;
+}
+.filterdrop .botborder{
+	position: absolute;
+	width: 80%;
+	border-bottom:solid 0.1rem white;
+	margin-left: 0.5rem;
+}
+
+.postfilter:hover .filterdrop{
+	display: block;
+}
+.filterdrop a:hover {
+	color: white;
 }

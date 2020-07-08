@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %} HomePage {% endblock title %}
 
 {% block stylesheets %}
+
+<link href="{% static 'login/css/projects.css' %}" rel="stylesheet" />
 {% endblock stylesheets %}
 
 {% block content %}
 
 <div class="main">
+    {% include 'includes/projects.html' %}
+    {% include 'includes/projects.html' %}
+    {% include 'includes/projects.html' %}
+    {% include 'includes/projects.html' %}
     Hello
     <br>
 
@@ -122,4 +129,5 @@
 {% endblock content %}
 
 {% block javascripts %}
+
 {% endblock javascripts %}
