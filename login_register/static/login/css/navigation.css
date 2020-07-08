@@ -9,7 +9,7 @@
 .navigations{
     position: fixed;
     padding: 1rem;
-	width: calc(100% - 18rem);
+	width: calc(100% - 19rem);
 	right: 0;
     background-color:var(--bg-primary);
     height: 4.5rem;

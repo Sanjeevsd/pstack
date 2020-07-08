@@ -1,0 +1,13 @@
+:root{
+    font-size: 16px;
+     font-family: 'Source Sans Pro';
+     --text-primary: #E5E5E5;
+     --text-secondary: #D0AC6E;
+     --bg-primary:#060608;
+     --bg-secondary:#424249;
+   }
+
+
+   .postfilter{
+       display: none;
+   }

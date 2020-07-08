@@ -32,7 +32,7 @@
     <link href="{% static 'login/css/style.css' %}" rel="stylesheet" />
     <link href="{% static 'login/css/sidebar.css' %}" rel="stylesheet" />
     <link href="{% static 'login/css/navigation.css' %}" rel="stylesheet" />
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
 
     <!-- Specific CSS goes HERE -->
     {% block stylesheets %}{% endblock stylesheets %}
@@ -53,17 +53,25 @@
 
 </body>
 
-<script src="/static/assets/js/plugins/bootstrap-notify.js"></script>
 <script>
-    var a = document.querySelectorAll(".sidebar-nav li a");
-    for (var i = 0, length = a.length; i < length; i++) {
-        a[i].onclick = function () {
-            var b = document.querySelector(".sidebar-nav li.active");
-            if (b) b.classList.remove("active");
-            this.parentNode.classList.add('active');
 
-        };
+
+    function openCity(evt, tabname) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("main");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("side-item");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabname).style.display = "block";
+        evt.currentTarget.className += " active";
     }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
 </script>
 <!-- Specific JS goes HERE -->
 {% block javascripts %}{% endblock javascripts %}
