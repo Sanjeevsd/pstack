@@ -71,9 +71,7 @@
   #anilight{
     visibility: hidden;
     transform: scaleX(0);
-    visibility: hidden;
-    
-    transition: ease 300ms;
+    transition: ease-in 300ms;
     transition-delay: 100ms;
     transform-origin: right;
   }
@@ -82,12 +80,12 @@
   transform: scale(1);
   }
   .side-item.active .side-txt{
-   color: white;
+   color: var(--text-primary);
     }
   
   .anibulb{
-      transition: ease 0.3s;
-     margin-left: 98.9%;
+    transition: ease 0.3s;
+    margin-left: 98.9%;
     width: 7px;
     position: absolute;
     height: 2rem;

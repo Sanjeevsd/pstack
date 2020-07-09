@@ -5,6 +5,7 @@
 {% block stylesheets %}
 
 <link href="{% static 'login/css/projects.css' %}" rel="stylesheet" />
+<link href="{% static 'login/css/userprofile.css' %}" rel="stylesheet" />
 {% endblock stylesheets %}
 
 {% block content %}
@@ -15,117 +16,13 @@
     {% include 'includes/projects.html' %}
     {% include 'includes/projects.html' %}
     Hello
-    <br>
-
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
-    Hello
-    <br>
 </div>
-{% include 'profile.html' %}
+{% include 'includes/profile.html' %}
+{% include 'includes/projecttab.html' %}
+{% include 'includes/notifications.html' %}
+{% include 'includes/contacts.html' %}
+{% include 'includes/popularprojects.html' %}
+{% include 'includes/recommendations.html' %}
 
 {% endblock content %}
 

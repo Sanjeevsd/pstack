@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <!-- Favicon - loaded as static -->
-    <link href="{% static 'login/whatproject.png' %}" rel="icon" type="image/png">
+    <link href="{% static 'login/whatproject.png' %}" rel="favicon" type="image/png">
 
     <title>
         {% block title %} {% endblock %}
@@ -57,6 +57,17 @@
 
 
     function openCity(evt, tabname) {
+        var sidelist = { "home": "Home", "contacts": "Contacts", "profile": "Edit Profile", "projecttab": "My Projects", "notifications": "Notifications", "recommendations": "Recommendations", "popularprojects": "Popular Projects" }
+        if (tabname === "home") {
+            document.getElementById("filters").style.display = "block"
+            document.getElementById("topics").style.visibility = "collapse"
+
+        }
+        else {
+            document.getElementById("filters").style.display = "none"
+            document.getElementById("topics").style.visibility = "visible"
+            document.getElementById("topics").innerHTML = sidelist[tabname]
+        }
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("main");
         for (i = 0; i < tabcontent.length; i++) {

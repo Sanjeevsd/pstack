@@ -32,11 +32,11 @@
        border-radius: 50%;
    }
     .avatars:hover{
-       border: solid 0.2rem white;
+       border: solid 0.2rem var(--text-primary);
    } 
    .profDetails a{
        text-decoration: none;
-       font-size: 1.3rem;
+       font-size: 1.2rem;
        text-align: center;
        overflow-wrap: break-word;
        position: relative;
@@ -49,7 +49,7 @@
     border: solid 0.1rem var(--text-secondary);
    }
    .profDetails:hover a{
-    color: white;
+    color: var(--text-primary);
    }
    .projectDetails{
     overflow-wrap: break-word;
@@ -61,7 +61,7 @@
        width: auto;
        overflow-wrap: break-word;
        color: var(--bg-secondary);
-       font-size: 1rem;
+       font-size: 1.2rem;
    }.pdescription{
         padding-top: 0.5rem;
         padding-right: 2.4rem;
@@ -69,7 +69,7 @@
         overflow-wrap: break-word;
         word-wrap: break-word;
        width: auto;
-       font-size: 0.8rem;
+       font-size: 1rem;
        color: var(--bg-secondary);
    }
    .projectInteractions{
@@ -92,7 +92,7 @@
     stroke-width:1;
    }
    .heartrate:hover #heartrate{
-    fill: white;
+    fill: var(--text-primary);
    }
   
    .likecount{
@@ -100,7 +100,7 @@
     color: var(--bg-secondary);
    }
    .heartrate:hover + .likecount{
-    color: white;
+    color: var(--text-primary);
    }
 .commentcount{
    display: inline-block;
@@ -117,9 +117,9 @@
    }
    .comments:hover #acomments{
      
-    stroke: white;
+    stroke: var(--text-primary);
    
    }
    .comments:hover ~ .commentcount{
-       color: white;
+       color: var(--text-primary);
    }

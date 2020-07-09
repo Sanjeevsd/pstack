@@ -50,7 +50,7 @@
  }
 
 .bellicon:hover #bell{
-fill: white;
+fill: var(--text-primary);
 }
 .searchform{
 	display: flex;
@@ -67,7 +67,7 @@ input[type="text"] {
 	border-radius: 2rem;
 	line-height: 1rem;
 	outline: none;
-	color: white;
+	color: var(--text-primary);
 	padding: 0.1rem;
 	padding-left:1rem;
 	right: 11.5rem;
@@ -124,26 +124,30 @@ opacity: 0.5;
   .dropdown {
 	float: right;
 	margin-left: 1rem;
+	cursor: pointer;
 	overflow: hidden;
 	
   }
   .dropdown a {
 	float: right;
 	font-size: 1rem;
-	color: white;
+	color: var(--text-primary);
 	text-align: center;
 	padding: 0.5 0.8rem;
 	text-decoration: none;
+	transition: all ease 0.2s;
   }
 
   .dropdown .dropbtn {
 	font-size: 1rem;
+	cursor: pointer;
 	min-width: 7rem;
 	text-align: center;
 	color: var(--bg-secondary);
 	border: solid 0.08rem;
 	border-color: var(--bg-secondary);
 	padding: 0.5rem 0.8rem;
+	transition: all ease 0.1s;
 	background-color: inherit;
 	font-family: inherit; /* Important for vertical align on mobile phones */
 	margin: 0; /* Important for vertical align on mobile phones */
@@ -151,14 +155,14 @@ opacity: 0.5;
   
   /* Add a red background color to navbar links on hover */
   .navbar a:hover, .dropdown:hover .dropbtn {
-	  border: none;
+	border-color: var(--bg-primary);
 	background-color: var(--bg-primary);
-	color: white;
+	color: var(--text-primary);
   }
   
   /* Dropdown content (hidden by default) */
   .dropdown-content {
-	display: none;
+	
 	color: var(--bg-secondary);
 	position: absolute;
 	background-color: var(--bg-primary);
@@ -166,6 +170,9 @@ opacity: 0.5;
 	border: solid 0.08rem;
 	border-color: var(--bg-secondary);
 	z-index: 1;
+	transition: all ease 0.2s;
+	transform-origin: top;
+	transform: scaleY(0);
   }
   
   /* Links inside the dropdown */
@@ -177,20 +184,30 @@ opacity: 0.5;
 	text-decoration: none;
 	display: block;
 	text-align: left;
+	transition: all 0.2s;
   }
   
   /* Add a grey background color to dropdown links on hover */
   .dropdown-content a:hover {
-	color: white;
+	color: var(--text-primary);
   }
   
   /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {
-	display: block;
+	transform: scaleY(1);
+	
   }
-
+.topics{
+	visibility: collapse;
+	bottom: 0.6rem;
+	position: absolute;
+	left: 0rem;
+	font-size: 1.3rem;
+	color: var(--text-secondary);
+}
 .postfilter{
 bottom: 0.6rem;
+transition: ease 0.2s;
 position: absolute;
 left: 0rem;
 }
@@ -198,11 +215,13 @@ left: 0rem;
 	cursor: pointer;
 }
 #postfilter:hover #filter-2{
-fill: white;
+fill: var(--text-primary);
 }
 
 .filterdrop{
-	display: none;
+	transform-origin: top;
+	transform:scaleY(0);
+	transition: ease 0.2s;
 	color: var(--bg-secondary);
 	position: absolute;
 	background-color: var(--bg-primary);
@@ -220,6 +239,7 @@ fill: white;
 	padding-right: 0.2rem;
 	margin-top: 0.2rem;
 	text-decoration: none;
+	transition: ease 0.2s;
 	display: block;
 	text-align: left;}
 .filterdrop .sortby{
@@ -227,19 +247,20 @@ fill: white;
 	margin-top: 0.2rem;
 	margin-left: 0.5rem;
 	font-size: 1.2rem;
-	color: white;
+	color: var(--text-primary);
 	padding-bottom: 0.3rem;
 }
 .filterdrop .botborder{
+	transition: ease 0.2s;
 	position: absolute;
 	width: 80%;
-	border-bottom:solid 0.1rem white;
+	border-bottom:solid 0.1rem var(--text-primary);
 	margin-left: 0.5rem;
 }
 
 .postfilter:hover .filterdrop{
-	display: block;
+	transform:scaleY(1);
 }
 .filterdrop a:hover {
-	color: white;
+	color: var(--text-primary);
 }
