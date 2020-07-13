@@ -11,7 +11,7 @@
     display: block;
     position: relative;
     margin-top: .5rem;
-    min-width: 35rem;
+    max-width: 80%;
     overflow-wrap: break-word;
     max-width: 40rem;
     
@@ -152,10 +152,22 @@
     margin-top: 6em;
     height: 2rem;
     width: 2rem;
+    cursor: pointer;
+    pointer-events: painted;
     align-self: center;
 }
 .uploadingbox span{
     align-self: center;
     font-size: 1.3rem;
     color: var(--text-secondary);
+}
+
+
+@media only screen and (max-width:600px){
+    .projectblock{
+        width: auto;
+        padding: 0;
+        margin: 0.5rem;
+    }
+    
 }

@@ -10,7 +10,6 @@
 #profile{
      display: flex;
      flex-direction: row-reverse;
-    justify-content: right;
 }
 .editsection{
   display: inline-flex;
@@ -226,4 +225,19 @@ fill: #D19C42;
 }
 .profilesociallinks #showgithub:hover #gitHb-3{
   fill: var(--text-secondary);
+}
+
+@media only screen and (max-width:600px){
+  #profile{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .editsection{
+    margin: 0.5rem;
+    flex-direction: column-reverse;
+  }
+.showprofile{
+ margin: auto;
+}
+
 }
