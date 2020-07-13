@@ -42,7 +42,7 @@
  .bellicon{
 	display: flex;
 	float: right;
-	 outline: none;
+	outline: none;
 	transition: ease 0.2s;
 	margin : 0.5rem 0.5rem 0.2rem 0.2rem;
 	margin-left: 1rem;
@@ -57,7 +57,7 @@ fill: var(--text-primary);
 	float: right;
 	align-content: center;
 }
-input[type="text"] {
+.searchform input[type="text"] {
 	height: 2rem;
 	margin-top: 0.2rem;
 	position: absolute;
@@ -80,7 +80,7 @@ input[type="text"] {
 	cursor: pointer;
   }
   
-  input[type="text"]::-webkit-input-placeholder{
+  .searchform input[type="text"]::-webkit-input-placeholder{
 	  position: absolute;
 	  transform: translateY(15rem);
 	  opacity: 0;
@@ -89,7 +89,7 @@ input[type="text"] {
 	transition: 0.5s;
 	  
   }
-  input[type="text"]:focus::-webkit-input-placeholder{
+  .searchform input[type="text"]:focus::-webkit-input-placeholder{
 	opacity: 1;
 	transform: translateY(0);
 	
@@ -98,14 +98,14 @@ input[type="text"] {
 
 }
   
-  input[type="text"]:focus {
+.searchform input[type="text"]:focus {
 	width: 30rem;
 	background: var(--bg-secondary);
 	z-index: 1;
 	
 	cursor: text;
   }
-  input[type="submit"] {
+  .searchform input[type="submit"] {
 	height: 2rem;
 	width: 2rem;
 	margin-top: 0.3rem;
@@ -118,7 +118,7 @@ input[type="text"] {
 	transition:  .4s ease;
   }
   
-  input[type="submit"]:hover {
+  .searchform input[type="submit"]:hover {
 opacity: 0.5;
   }
   .dropdown {
@@ -203,7 +203,7 @@ opacity: 0.5;
 	position: absolute;
 	left: 0rem;
 	font-size: 1.3rem;
-	color: var(--text-secondary);
+	color: var(--text-primary);
 }
 .postfilter{
 bottom: 0.6rem;

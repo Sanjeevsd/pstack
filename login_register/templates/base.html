@@ -16,11 +16,11 @@
     </title>
 
     <meta name="description" content="Project Suggesting System A Major Project KEC">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
 
-    <!--     Fonts and icons     -->
+    <!--     Fonts and icons    s -->
 
     <!------ Include the above in your HEAD tag ---------->
     <link
@@ -33,7 +33,8 @@
     <link href="{% static 'login/css/sidebar.css' %}" rel="stylesheet" />
     <link href="{% static 'login/css/navigation.css' %}" rel="stylesheet" />
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- Specific CSS goes HERE -->
     {% block stylesheets %}{% endblock stylesheets %}
 
@@ -54,8 +55,38 @@
 </body>
 
 <script>
+    $(document).ready(function () {
+        $('#svgsvgsvg').click(function () {
+            var dataArray = $('#updateProfile').serializeArray();
+            if (dataArray[1].value == "" || dataArray[2].value == "" || dataArray[3].value == "" || dataArray[4].value == "" || dataArray[5].value == "") {
+                console.log("EMpty");
+            }
+            else {
+                var serialData = $('#updateProfile').serialize();
+                var udauneho = document.getElementById("savepaths")
+                udauneho.style.cssText = "transform-origin: center; transform:rotate(360deg); transition: transform 0.2s ease;"
+                $.ajax({
+                    url: '/updateProfile/',
+                    data: serialData,
+                    type: 'post',
+                    success: function (response) {
+                        $('#contentsskills').html(response.userprofile.skills);
+                        $('#contentsintrests').html(response.userprofile.interests);
+                        $('#contentsfblink').html(response.userprofile.fblink);
+                        $('#contentsgitlink').html(response.userprofile.gitlink);
+                        $('#contentsaboutme').html(response.userprofile.aboutme);
 
+                        $('#openfblinka').attr("href", "" + response.userprofile.fblink + "");
+                        $('#opengitlinka').attr("href", "" + response.userprofile.gitlink + "");
+                        udauneho.style.cssText = "transform-origin: center; transform:rotate(0deg); transition: transform 0.2s ease;"
+                    }
 
+                });
+
+            }
+
+        });
+    });
     function openCity(evt, tabname) {
         var sidelist = { "home": "Home", "contacts": "Contacts", "profile": "Edit Profile", "projecttab": "My Projects", "notifications": "Notifications", "recommendations": "Recommendations", "popularprojects": "Popular Projects" }
         if (tabname === "home") {
@@ -79,12 +110,20 @@
         }
         document.getElementById(tabname).style.display = "block";
         evt.currentTarget.className += " active";
-    }
 
-    // Get the element with id="defaultOpen" and click on it
+        if (evt.currentTarget.className === "openerprofile active") {
+            document.getElementById("mprofiles").classList.add("active")
+            document.getElementById("openerprofile").classList.remove("active")
+
+        }
+
+    }
     document.getElementById("defaultOpen").click();
 </script>
+
 <!-- Specific JS goes HERE -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+
+{% endblock javascripts %}
 
 </html>

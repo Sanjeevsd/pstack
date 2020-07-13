@@ -13,7 +13,7 @@
     margin-top: .5rem;
     min-width: 35rem;
     overflow-wrap: break-word;
-    max-width: 45rem;
+    max-width: 40rem;
     
     border: solid var(--bg-secondary) 0.01rem;
    }
@@ -31,9 +31,7 @@
        height: 1.5rem;
        border-radius: 50%;
    }
-    .avatars:hover{
-       border: solid 0.2rem var(--text-primary);
-   } 
+    
    .profDetails a{
        text-decoration: none;
        font-size: 1.2rem;
@@ -45,9 +43,7 @@
        color: var(--bg-secondary);
        align-self: center;
    }
-   .profDetails:hover .avatars{
-    border: solid 0.1rem var(--text-secondary);
-   }
+   
    .profDetails:hover a{
     color: var(--text-primary);
    }
@@ -123,3 +119,43 @@
    .comments:hover ~ .commentcount{
        color: var(--text-primary);
    }
+
+
+#projecttab{
+    display: flex;   
+}
+.projectshowsecction{
+    display: inline-flex;
+    top: 0rem;
+    flex-direction: column;
+    max-width: 45rem;
+    min-height: 10.5rem;
+}
+.projectuploadsection{
+    margin-left: 8rem;
+    position: fixed;
+    padding-top: 10rem;
+    min-width: 10rem;
+    display: inline-flex;
+    flex-direction: column;
+    max-width: 35rem;
+
+}
+.uploadingbox{
+    display: inline-flex;
+    flex-direction: column;
+    width: 15rem;
+    border: solid 0.1rem var(--bg-secondary);
+    height: 15rem;
+}
+.uploadingbox svg{
+    margin-top: 6em;
+    height: 2rem;
+    width: 2rem;
+    align-self: center;
+}
+.uploadingbox span{
+    align-self: center;
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+}

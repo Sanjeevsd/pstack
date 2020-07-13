@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
 from . import pdftext, dbhandel
+from rest_framework import viewsets
+from .models import usersprofile
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
+from .models import usersprofile
 
 
 def loginpage(request):
@@ -88,6 +93,24 @@ def logout(request):
     return HttpResponseRedirect("/login")
 
 
-def profile(request):
-    return render(request, "profile.html")
-
+def updateProfile(request):
+    if request.method == 'POST':
+        skills = request.POST.get('skills')
+        interests = request.POST.get('interests')
+        aboutme = request.POST.get('aboutme')
+        fblink = request.POST.get('fblink')
+        gitlink = request.POST.get('gitlink')
+        usermodel = usersprofile.objects.filter(user=request.user).update(
+            skills=skills,
+            interests=interests,
+            aboutme=aboutme,
+            fblink=fblink,
+            gitlink=gitlink)
+        returnData = {
+            "skills": skills,
+            "interests": interests,
+            "aboutme": aboutme,
+            "fblink": fblink,
+            "gitlink": gitlink
+        }
+        return JsonResponse({"userprofile": returnData})

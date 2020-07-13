@@ -5,7 +5,225 @@
      --text-secondary: #D0AC6E;
      --bg-primary:#060608;
      --bg-secondary:#424249;
-   }
+}
 
+#profile{
+     display: flex;
+     flex-direction: row-reverse;
+    justify-content: right;
+}
+.editsection{
+  display: inline-flex;
+  flex-direction: column;
+  max-width: 35rem;
+  min-height: 10.5rem;
 
+}
+.sknint , .aboutme{
+  display: block;
+  margin-top: 1rem;
+  padding-right: 1rem;
+  max-height: 10.5rem;
+  min-height: 8rem;
+  max-width: 35rem;
+  border: solid 0.1rem var(--bg-secondary);
+  overflow: auto;
+  word-wrap: break-word;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: var(--bg-secondary);
+}
+.sknint input[type=text], .aboutme textarea{
+  margin-top: 0.5rem;
   
+  min-width: 97%;
+  color: var(--text-primary);
+  background: none;
+  
+  padding: 0.2rem;
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--bg-secondary);
+  border: solid 0.1rem var(--bg-secondary);
+}
+.sknint label{
+  font: 1.3rem;
+  top: 0.5rem;
+  color: var(--bg-secondary);
+  
+}
+.sknint input[type=text]:focus{
+  transition: 0.2s ease;
+  border: solid 0.1rem var(--text-primary);
+}
+
+
+.aboutme textarea{
+  min-height: 5rem;
+  max-height:80% ;
+  
+}
+.aboutme label{
+  font: 1.3rem;
+  top: 0.5rem;
+  color: var(--bg-secondary);
+  
+}
+.aboutme textarea:focus{
+  border: 0.1rem solid var(--text-primary);
+}
+.editfooter{
+  display: flex;
+  height: 7rem;
+  margin-top: 1rem;
+  border: solid 0.1rem var(--bg-secondary);
+  max-width: 35rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+}
+.sociallinks{
+  margin-top: 1rem;
+  display: block;
+  min-width: 80%;
+  max-width: 100%;
+  overflow: auto;
+  word-wrap: break-word;
+  color: var(--bg-secondary);
+}
+.input-cont{
+  display: flex;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+.input-cont input{
+  width: 80%;
+  font-size: 1.2rem;
+  text-indent: 0.5rem;
+  color: var(--bg-secondary);
+  margin-left: 0.5rem;
+  background: none;
+  border: 0.1rem solid var(--bg-secondary);
+}
+.input-cont input:focus{
+  transition: 0.2s;
+  border: 0.1rem solid var(--text-primary); 
+}
+
+.uploadsvg{
+  margin-top: 1.5rem;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  
+  right: 1.5rem;
+  bottom: 1.5rem;
+  display: flex;
+  font-size: 1.3rem;
+  align-items: center;
+  text-align: center;
+  color: var(--text-primary);
+  flex-direction: column;
+}
+
+#svgsvgsvg{
+  cursor: pointer; 
+ 
+}
+#svgsvgsvg:hover #savepaths {
+  transition: all .3s ease-out;
+fill: #D19C42;
+}
+
+#savepaths{
+  transition:all 1s ease-out;
+  transform-origin: center;
+}
+
+
+.showprofile{
+  display: inline-flex;
+  padding: 1rem;
+  margin-top: 1rem;
+  max-height: 200%;
+  flex-direction: column;
+  min-width: 15rem;
+  margin-left: 5rem;
+  max-width: 16rem;
+  border: solid 0.1rem var(--bg-secondary);
+}
+.profilehead{
+  display: block;
+}
+.leftvline{
+  margin-top: 1.5rem;
+  width: 37%;
+  float: left;
+  border-bottom: solid 0.1rem var(--bg-secondary);
+}
+
+.rightvline{
+  margin-top: 1.5rem;
+  width: 37%;
+  float: right;
+  border-bottom: solid 0.1rem var(--bg-secondary);
+}
+.editprofileavatars{
+  position: absolute;
+  margin-left: 0.5rem;
+
+  border-radius: 50%;
+  width: 3.2rem;
+  height: 3.2rem;
+}
+.profilename{
+  margin-top: 2rem;
+  align-self: center;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--bg-secondary);
+  }
+.profilename,.profileintrests,.profileskills,.profileaboutme{
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  width:inherit;
+}
+.profileintrests,.profileskills,.profileaboutme{
+  margin-top: .5rem;
+  height: auto;
+  word-wrap: break-word;
+}
+.showprofile .titles{
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  word-wrap: break-word;
+}
+.showprofile .contentss{
+  font-size: 1rem;
+  
+  color: var(--bg-secondary);
+  word-wrap: break-word;
+}
+.profileaboutme{
+  height: 5rem;
+}
+.profilesociallinks{
+  position: relative;
+  margin-top: 4rem;
+  bottom: 1rem;
+  align-self: center;
+  height: 2rem;
+}
+.profilesociallinks svg{
+  margin: 0.5rem;
+  cursor: pointer;
+}
+.profilesociallinks #showfb:hover #fb-3{
+  fill: var(--text-secondary);
+}
+.profilesociallinks #showgithub:hover #gitHb-3{
+  fill: var(--text-secondary);
+}

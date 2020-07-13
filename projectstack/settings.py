@@ -26,7 +26,7 @@ SECRET_KEY = "0th+!)pd$^^8%b%ni196ry-7#-6tsx56ivu%@+wwn!v9)yy4-e"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -117,7 +118,8 @@ USE_TZ = True
 STATIC_URL = "/login_register/static/"
 STATICFILES_DIR = {os.path.join(BASE_DIR, "login_register/static")}
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
 AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
 LOGIN_REDIRECT_URL = "/"
