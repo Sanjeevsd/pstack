@@ -27,6 +27,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
     <!-- CSS Files -->
@@ -54,72 +55,11 @@
     </div>
 
 </body>
-
+<script src="{% static 'login/js/Notifier.min.js' %}"></script>
+<script src="{% static 'login/js/main.js' %}"></script>
 <script>
-    $(document).ready(function () {
-        $('#svgsvgsvg').click(function () {
-            var dataArray = $('#updateProfile').serializeArray();
-            if (dataArray[1].value == "" || dataArray[2].value == "" || dataArray[3].value == "" || dataArray[4].value == "" || dataArray[5].value == "") {
-                console.log("EMpty");
-            }
-            else {
-                var serialData = $('#updateProfile').serialize();
-                var udauneho = document.getElementById("savepaths")
-                udauneho.style.cssText = "transform-origin: center; transform:rotate(360deg); transition: transform 0.2s ease;"
-                $.ajax({
-                    url: '/updateProfile/',
-                    data: serialData,
-                    type: 'post',
-                    success: function (response) {
-                        $('#contentsskills').html(response.userprofile.skills);
-                        $('#contentsintrests').html(response.userprofile.interests);
-                        $('#contentsfblink').html(response.userprofile.fblink);
-                        $('#contentsgitlink').html(response.userprofile.gitlink);
-                        $('#contentsaboutme').html(response.userprofile.aboutme);
 
-                        $('#openfblinka').attr("href", "" + response.userprofile.fblink + "");
-                        $('#opengitlinka').attr("href", "" + response.userprofile.gitlink + "");
-                        udauneho.style.cssText = "transform-origin: center; transform:rotate(0deg); transition: transform 0.2s ease;"
-                    }
 
-                });
-
-            }
-
-        });
-    });
-    function openCity(evt, tabname) {
-        var sidelist = { "home": "Home", "contacts": "Contacts", "profile": "Edit Profile", "projecttab": "My Projects", "notifications": "Notifications", "recommendations": "Recommendations", "popularprojects": "Popular Projects" }
-        if (tabname === "home") {
-            document.getElementById("filters").style.display = "block"
-            document.getElementById("topics").style.visibility = "collapse"
-
-        }
-        else {
-            document.getElementById("filters").style.display = "none"
-            document.getElementById("topics").style.visibility = "visible"
-            document.getElementById("topics").innerHTML = sidelist[tabname]
-        }
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("main");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("side-item");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(tabname).style.display = "block";
-        evt.currentTarget.className += " active";
-
-        if (evt.currentTarget.className === "openerprofile active") {
-            document.getElementById("mprofiles").classList.add("active")
-            document.getElementById("openerprofile").classList.remove("active")
-
-        }
-
-    }
-    document.getElementById("defaultOpen").click();
 </script>
 
 <!-- Specific JS goes HERE -->

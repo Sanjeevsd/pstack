@@ -123,15 +123,18 @@
 
 #projecttab{
     display: flex;   
+    height: 12rem;
+    flex-direction: row;
 }
 .projectshowsecction{
     display: inline-flex;
-    top: 0rem;
+    min-width: 30rem;
     flex-direction: column;
     max-width: 45rem;
     min-height: 10.5rem;
 }
 .projectuploadsection{
+    display: inline-flex;
     margin-left: 8rem;
     position: fixed;
     padding-top: 10rem;
@@ -162,7 +165,54 @@
     color: var(--text-secondary);
 }
 
-
+.uploadprojectmodal {
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 10rem;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+  }
+.modal-content {
+    background-color: rgba(255, 255, 255, .15);  
+    backdrop-filter: blur(50px);
+    margin: auto;
+    padding-left: 2rem;
+    padding-right: 0.2rem;
+   
+    border: 1px solid #888;
+    width: 45%;
+}
+.modal-content button{
+  margin-bottom: 1rem;
+  margin-left: 3rem;
+   float: center;
+  
+}
+.modal-content input{
+    word-wrap: break-word;
+    overflow: hidden;
+    margin: 1rem;
+    width: 50%;
+}
+.mclose {
+    color: #aaaaaa;
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .mclose:hover,
+  .mclose:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
 @media only screen and (max-width:600px){
     .projectblock{
         width: auto;

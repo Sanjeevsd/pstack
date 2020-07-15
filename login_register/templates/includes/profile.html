@@ -1,6 +1,5 @@
 <div class="main" id="profile">
     {% load static %}
-
     <div class="editsection" id="editsecction">
         <form name="editprofile" id="updateProfile" method="POST" encytpe="multipart/form-data">
             {% csrf_token %}
@@ -41,6 +40,7 @@
                         <input id="githublink" type="text" name="gitlink" value="{{user.usersprofile.gitlink}}">
                     </div>
 
+
                 </div>
         </form>
         <div class="uploadsvg">
@@ -58,7 +58,10 @@
             <div class="leftvline">
             </div>
             <div class="avatarmiddleframe">
-                <img class="editprofileavatars" src="{{ user.usersprofile.avatar.url }}" alt="#">
+                <img id="profileavatarshow" class="editprofileavatars" src="{{ user.usersprofile.avatar.url }}" alt="#">
+                <form id="iamgeavatarform" enctype="multipart/form-data">
+                    <input id="profileavatarshowupload" type="file" style="display: none;"
+                        accept="image/x-png,image/gif,image/jpeg"></input></form>
             </div>
             <div class="rightvline">
             </div>
@@ -99,4 +102,5 @@
                 </svg></a>
         </div>
     </div>
+</div>
 </div>

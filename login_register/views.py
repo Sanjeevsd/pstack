@@ -7,6 +7,7 @@ from .models import usersprofile
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
 from .models import usersprofile
+import json
 
 
 def loginpage(request):
@@ -95,17 +96,25 @@ def logout(request):
 
 def updateProfile(request):
     if request.method == 'POST':
-        skills = request.POST.get('skills')
-        interests = request.POST.get('interests')
-        aboutme = request.POST.get('aboutme')
-        fblink = request.POST.get('fblink')
-        gitlink = request.POST.get('gitlink')
-        usermodel = usersprofile.objects.filter(user=request.user).update(
-            skills=skills,
-            interests=interests,
-            aboutme=aboutme,
-            fblink=fblink,
-            gitlink=gitlink)
+
+        formData = json.loads(request.POST.get('serialData'))
+        form_data_dict = {}
+        for field in formData:
+            form_data_dict[field["name"]] = field["value"]
+        skills = form_data_dict['skills']
+        interests = form_data_dict['interests']
+        aboutme = form_data_dict['aboutme']
+        fblink = form_data_dict['fblink']
+        gitlink = form_data_dict['gitlink']
+        usermodel = usersprofile.objects.get(user=request.user)
+        if request.POST.get("ifimage") != "none":
+            usermodel.avatar = request.FILES['image_form']
+        usermodel.skills = skills
+        usermodel.skillsinterests = interests
+        usermodel.skillsaboutme = aboutme
+        usermodel.skillsfblink = fblink
+        usermodel.skillsgitlink = gitlink
+        usermodel.save()
         returnData = {
             "skills": skills,
             "interests": interests,

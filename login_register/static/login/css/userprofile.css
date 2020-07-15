@@ -9,12 +9,14 @@
 
 #profile{
      display: flex;
-     flex-direction: row-reverse;
+     flex-direction: row;
+     justify-content: initial;
+     height: 11rem;
 }
 .editsection{
   display: inline-flex;
-  flex-direction: column;
-  max-width: 35rem;
+  flex-direction: row;
+  max-width: 100%;
   min-height: 10.5rem;
 
 }
@@ -22,8 +24,8 @@
   display: block;
   margin-top: 1rem;
   padding-right: 1rem;
-  max-height: 10.5rem;
-  min-height: 8rem;
+  
+  
   max-width: 35rem;
   border: solid 0.1rem var(--bg-secondary);
   overflow: auto;
@@ -75,7 +77,7 @@
 }
 .editfooter{
   display: flex;
-  height: 7rem;
+  height: 7.5rem;
   margin-top: 1rem;
   border: solid 0.1rem var(--bg-secondary);
   max-width: 35rem;
@@ -145,6 +147,7 @@ fill: #D19C42;
 .showprofile{
   display: inline-flex;
   padding: 1rem;
+  
   margin-top: 1rem;
   max-height: 200%;
   flex-direction: column;

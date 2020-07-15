@@ -9,7 +9,7 @@
 .navigations{
     position: fixed;
     padding: 1rem;
-	width: calc(100% - 19rem);
+	width: calc(100% - 16rem);
 	right: 0;
     background-color:var(--bg-primary);
     height: 4.5rem;
@@ -117,8 +117,10 @@ fill: var(--text-primary);
   }
   .dropdown {
 	float: right;
+	padding-bottom: 0.5rem;
 	margin-left: 1rem;
 	cursor: pointer;
+	margin-bottom: 0.5rem;
 	overflow: hidden;
 	
   }
@@ -135,6 +137,7 @@ fill: var(--text-primary);
   .dropdown .dropbtn {
 	font-size: 1rem;
 	cursor: pointer;
+	
 	min-width: 7rem;
 	text-align: center;
 	color: var(--bg-secondary);
@@ -191,6 +194,7 @@ fill: var(--text-primary);
 	
   }
 .topics{
+	margin-left: 0.5rem;
 	visibility: collapse;
 	bottom: 0.6rem;
 	position: absolute;

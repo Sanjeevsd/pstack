@@ -263,6 +263,7 @@ h3:after {
 .main{
   position: absolute;
   z-index: -1;
+  width: calc(100% - 17rem);
   margin-top: 6rem;
   margin-left: 17rem;
   background-color: var(--bg-primary);
