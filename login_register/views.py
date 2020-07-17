@@ -7,7 +7,8 @@ from .models import usersprofile
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
 from .models import usersprofile
-import json
+import json, random
+from django.contrib.auth.decorators import login_required
 
 
 def loginpage(request):
@@ -17,10 +18,17 @@ def loginpage(request):
         user = auth.authenticate(username=Username, password=Password)
         if user is not None:
             auth.login(request, user)
+            greetings = [
+                f"Hello @{user.username}, Welcome back",
+                f"Hi there @{user.username},Glad you came back",
+                f"Hi there @{user.username},It's good to see you again"
+            ]
+            messages.add_message(request, 159, random.choices(greetings)[0])
             return HttpResponseRedirect("/")
         else:
             message = "Invalid Email or Password"
-            messages.error(request, message)
+            messages.add_message(
+                request, 951, "Couldn't Login, Invalid Username or Password")
             return render(request, "login.html")
     else:
         return render(request, "login.html")
@@ -60,15 +68,17 @@ def signup(request):
         return render(request, "reg.html")
 
 
+@login_required(login_url='/login')
 def homepage(request):
     if request.user.is_authenticated:
         uname = request.user.username
         email = request.user.email
-        data = dbhandel.retriveproject(uname)
+        # data = dbhandel.retriveproject(uname)
         # messages.add_message(request,1111,data_body)
         messages.add_message(request, 101, email)
         messages.add_message(request, 100, uname)
-        return render(request, "homem.html", {"data": data})
+        # greetings=[f"Hello {uname}, Welcome back",f"Hi there {uname},Glad you came back",f"Hi there {uname},It's good to see you again"]
+        return render(request, "homem.html")
     else:
         return HttpResponseRedirect("/login")
 
@@ -96,7 +106,6 @@ def logout(request):
 
 def updateProfile(request):
     if request.method == 'POST':
-
         formData = json.loads(request.POST.get('serialData'))
         form_data_dict = {}
         for field in formData:
@@ -123,3 +132,6 @@ def updateProfile(request):
             "gitlink": gitlink
         }
         return JsonResponse({"userprofile": returnData})
+
+
+# success=159, error=951, warn=357, info=753

@@ -14,6 +14,17 @@
 <body
   style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{% static 'login/img/bg.png' %}');">
   {#  popovers #}
+  {% if messages %}
+  {% for message in messages %}
+  {% if message.level == 951 %}
+  <script src="{% static 'login/js/Notifier.min.js' %}"></script>
+  <script src="{% static 'login/js/main.js' %}"></script>
+  <script>
+    norify("pError", "{{message}}")
+  </script>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
@@ -24,21 +35,7 @@
 
   <div class="pstack">
     <div class="black-box"></div>
-    {% if messages %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    {% for mess in messages %}
-    {% if "successfully" in mess.message %}
-    <script>toastr.success("{{ mess.message }}")</script>
-    {% elif "Invalid" in mess.message%}
-    <script>toastr.error("{{ mess.message }}")</script>
-    {% endif%}
 
-    {% endfor %}
-
-    {% endif %}
     <div class="form-box">
       <h1>Sign In</h1>
       <h2>
@@ -80,6 +77,7 @@
 
 
   <script>
+
     $(".txtb input").on("focus", function () {
       $(this).addClass("focus");
 
@@ -90,6 +88,8 @@
         $(this).removeClass("focus");
     });
   </script>
+
+
 </body>
 
 </html>
