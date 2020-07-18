@@ -13,7 +13,7 @@ nltk
 numpy
 oauthlib==3.1.0
 pandas
-pdftotext==2.1.4
+pymupdf
 psycopg2==2.8.4
 python-dateutil==2.8.1
 python3-openid==3.1.0
