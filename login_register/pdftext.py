@@ -3,7 +3,6 @@ from os import remove
 import re
 from string import punctuation
 from io import StringIO
-import pdftotext
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 import fitz
