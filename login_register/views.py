@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
-from . import pdftext, dbhandel
+from nltk.util import pr
+from . import pdftext
 from rest_framework import viewsets
 from .models import usersprofile
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
-from .models import usersprofile
+from .models import usersprofile, projects
 import json, random
+from django.core import serializers
 from django.contrib.auth.decorators import login_required
 
 
@@ -77,24 +79,12 @@ def homepage(request):
         # messages.add_message(request,1111,data_body)
         messages.add_message(request, 101, email)
         messages.add_message(request, 100, uname)
-        # greetings=[f"Hello {uname}, Welcome back",f"Hi there {uname},Glad you came back",f"Hi there {uname},It's good to see you again"]
         return render(request, "homem.html")
     else:
         return HttpResponseRedirect("/login")
 
 
-def uploadproject(request):
-    if request.method == "POST":
-        file = request.FILES["projectfileupload"]
-        projectname = request.POST["uploadfilename"]
-        title, body = pdftext.pdf_to_txt(file)
-        if title == "error":
-            messages.error(request, f"Invalid Project File {file}")
-            return HttpResponseRedirect("/")
-        dbhandel.save_project(request.user.username, projectname, title, body)
-    return HttpResponseRedirect("/")
-
-
+@login_required(login_url='/login')
 def home(request):
     return HttpResponseRedirect("/home")
 
@@ -104,6 +94,27 @@ def logout(request):
     return HttpResponseRedirect("/login")
 
 
+@login_required
+def uploadproject(request):
+    if request.method == "POST":
+        file = request.FILES["projectfile"]
+        title, body = pdftext.pdf_to_txt(file)
+        if title == "error":
+            messages.error(request, f"Invalid Project File {file}")
+            return HttpResponseRedirect("/")
+        project = projects.objects.filter(user=request.user)
+        print(project)
+        # questions_by_category = [question.__dict__ for question in questions_by_category]
+        serialized_data = {}
+        for p in project:
+            serialized_data[p.projectname] = serializers.serialize('json', [p])
+
+        return JsonResponse({"Projects": serialized_data})
+    elif request.method == "GET":
+        return HttpResponseRedirect('/')
+
+
+@login_required
 def updateProfile(request):
     if request.method == 'POST':
         formData = json.loads(request.POST.get('serialData'))
@@ -118,12 +129,19 @@ def updateProfile(request):
         usermodel = usersprofile.objects.get(user=request.user)
         if request.POST.get("ifimage") != "none":
             usermodel.avatar = request.FILES['image_form']
+
         usermodel.skills = skills
         usermodel.skillsinterests = interests
         usermodel.skillsaboutme = aboutme
         usermodel.skillsfblink = fblink
         usermodel.skillsgitlink = gitlink
-        usermodel.save()
+        try:
+            usermodel.save()
+        except:
+            response = JsonResponse({"errors": "Invalid Image File"})
+            response.status_code = 400
+            return response
+
         returnData = {
             "skills": skills,
             "interests": interests,

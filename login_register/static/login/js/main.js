@@ -38,20 +38,21 @@ var notifier = new Notifier({
     position: "top-right",
 
 });
+
 function norify(types, mess, time = 3000) {
     notifier.notify("" + types + "", "" + mess + "", time);
 };
 
 
 document.getElementById("heartrate").addEventListener("click", glowheart);
+
 function glowheart() {
     if (document.getElementById("heartrate").classList.contains("liked")) {
         document.getElementById("heartrate").style.stroke = "#424249"
         document.getElementById("heartrate").style.strokeWidth = "1"
         document.getElementById("heartrate").style.fill = "none"
         document.getElementById("heartrate").classList.remove("liked")
-    }
-    else {
+    } else {
         document.getElementById("heartrate").style.stroke = "none"
         document.getElementById("heartrate").style.fill = "#d19c42"
         document.getElementById("heartrate").classList.add("liked")
@@ -84,6 +85,7 @@ jQuery("#profileavatarshowupload").on("change", function () {
     console.log(d.append("asdf", this.files[0]));
 });
 document.getElementById('profileavatarshowupload').addEventListener('change', handleFileSelect, false);
+
 function handleFileSelect(evt) {
     var files = evt.target.files;
     var f = files[0];
@@ -99,13 +101,20 @@ function handleFileSelect(evt) {
 }
 
 function openCity(evt, tabname) {
-    var sidelist = { "home": "Home", "contacts": "Contacts", "profile": "Edit Profile", "projecttab": "My Projects", "notifications": "Notifications", "recommendations": "Recommendations", "popularprojects": "Popular Projects" }
+    var sidelist = {
+        "home": "Home",
+        "contacts": "Contacts",
+        "profile": "Edit Profile",
+        "projecttab": "My Projects",
+        "notifications": "Notifications",
+        "recommendations": "Recommendations",
+        "popularprojects": "Popular Projects"
+    }
     if (tabname === "home") {
         document.getElementById("filters").style.display = "block"
         document.getElementById("topics").style.visibility = "collapse"
 
-    }
-    else {
+    } else {
         document.getElementById("filters").style.display = "none"
         document.getElementById("topics").style.visibility = "visible"
         document.getElementById("topics").innerHTML = sidelist[tabname]
@@ -145,29 +154,55 @@ function getCookie(c_name) {
     return "";
 }
 $(document).ready(function () {
-    console.log("fgb")
+    $('#uploadProject').click(function () {
+        console.log("hello?")
+        var fileUploaded = $("#pfileupload").get(0).files;
+        console.log(fileUploaded)
+        var uploads = new FormData();
+        uploads.append("somedata", "somedatas");
+        uploads.append("projectfile", fileUploaded[0]);
+        $.ajax({
+            headers: {
+                'X-CSRFToken': getCookie("csrftoken")
+            },
+            url: '/uploadProject/',
+            data: uploads,
+            type: 'post',
+            cache: false,
+            enctype: 'multipart/form-data',
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                for (const [key, value] of Object.entries(response.Projects)) {
+
+                    var json = $.parseJSON(value);
+                    console.log(json[0]["fields"]["user"])
+                }
+                norify("pSuccess", "Proejct Uploaded", 1500)
+            }
+        });
+    });
     //upload ..update profile
     $('#svgsvgsvg').click(function () {
-        console.log("sdfghj")
         var dataArray = $('#updateProfile').serializeArray();
         if (dataArray[1].value == "" || dataArray[2].value == "" || dataArray[3].value == "" || dataArray[4].value == "" || dataArray[5].value == "") {
-            norify("pError", "Fill out all the information", 1000);
-        }
-        else {
+            norify("pWarn", "Fill out all the information", 1000);
+        } else {
             var serialData = JSON.stringify(dataArray);
             var image_form = $("#profileavatarshowupload").get(0).files;
             var datas = new FormData();
             datas.append("serialData", serialData);
             if (image_form[0] == null) {
                 datas.append("ifimage", "none");
-            }
-            else {
+            } else {
                 datas.append("image_form", image_form[0]);
             }
             var udauneho = document.getElementById("savepaths")
             udauneho.style.cssText = "transform-origin: center; transform:rotate(360deg); transition: transform 0.2s ease;"
             $.ajax({
-                headers: { 'X-CSRFToken': getCookie("csrftoken") },
+                headers: {
+                    'X-CSRFToken': getCookie("csrftoken")
+                },
                 url: '/updateProfile/',
                 data: datas,
                 type: 'post',
@@ -187,8 +222,11 @@ $(document).ready(function () {
                     udauneho.style.cssText = "transform-origin: center; transform:rotate(0deg); transition: transform 0.2s ease;"
                     norify("pSuccess", "Profile Updated", 1500)
                 },
-                fail: function () {
-                    norify("pError", "Couldn't Update your profile", 1500)
+                error: function (data) {
+                    errorc = data.status
+                    errorm = (data.responseJSON.errors)
+                    console.log(errorm)
+                    norify("pError", "" + errorm + "", 2000)
                 }
             });
 

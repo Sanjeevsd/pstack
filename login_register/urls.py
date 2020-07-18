@@ -10,6 +10,6 @@ urlpatterns = [
     path("signup/", views.signup, name="SignUp"),
     path("", views.home, name="HOME"),
     path("home/", views.homepage, name="home"),
-    path("home/uploadProject", views.uploadproject),
+    path("uploadProject/", views.uploadproject),
 ]
 urlpatterns += staticfiles_urlpatterns()
