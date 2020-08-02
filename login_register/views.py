@@ -42,7 +42,7 @@ def signup(request):
             user = User.objects.get(username=request.POST["Username"])
             if user is not None:
                 E_message = f"Invalid username: {user} already taken"
-                messages.success(request, E_message)
+                messages.add_message(request, 951, E_message)
                 return render(request, "reg.html")
 
         except User.DoesNotExist:
@@ -58,14 +58,14 @@ def signup(request):
                     first_name=Username,
                 )
                 user.save()
-                print("user created")
                 messg = f"User {user} registered successfully"
-                messages.success(request, messg)
-                return redirect("/login")
+                messages.add_message(request, 159, messg)
+                user = auth.authenticate(username=Username, password=Password)
+                return redirect("/")
             else:
                 message = "Password are not same"
-                messages.error(request, message)
-                return render(request, "reg.html", {"message": message})
+                messages.add_message(request, 951, message)
+                return render(request, "reg.html")
     else:
         return render(request, "reg.html")
 
@@ -73,13 +73,12 @@ def signup(request):
 @login_required(login_url='/login')
 def homepage(request):
     if request.user.is_authenticated:
-        uname = request.user.username
-        email = request.user.email
-        # data = dbhandel.retriveproject(uname)
-        # messages.add_message(request,1111,data_body)
-        messages.add_message(request, 101, email)
-        messages.add_message(request, 100, uname)
-        return render(request, "homem.html")
+        all_projects = {}
+        recommended_projects = {}
+        popular_projects = {}
+        my_projects = {"a": projects.objects.filter(user=request.user)}
+
+        return render(request, "homem.html", my_projects)
     else:
         return HttpResponseRedirect("/login")
 
@@ -102,8 +101,12 @@ def uploadproject(request):
         if title == "error":
             messages.error(request, f"Invalid Project File {file}")
             return HttpResponseRedirect("/")
+
+        project_update = projects(user=request.user,
+                                  projectname=title,
+                                  contents=body)
+        project_update.save()
         project = projects.objects.filter(user=request.user)
-        print(project)
         # questions_by_category = [question.__dict__ for question in questions_by_category]
         serialized_data = {}
         for p in project:
