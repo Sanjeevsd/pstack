@@ -36,3 +36,12 @@ class projects(models.Model):
 
     def __str__(self):
         return self.projectname
+
+class ContactForm(models.Model):
+    FirstName = models.TextField(max_length=200)
+    LastName = models.TextField(max_length=200)
+    Email = models.EmailField(max_length=200)
+    Message = models.TextField(max_length=300)
+
+    class Meta:
+        db_table = "contact"

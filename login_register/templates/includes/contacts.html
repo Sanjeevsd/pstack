@@ -1,5 +1,34 @@
 <div class="main" id="contacts">
-    <div class="contacts">
-        contacts
+    {% load static %}
+   <div class="contactsection" id="contactsection"  >
+       <form name="sendmessage" id="sendmessage" method="POST" action="contact/" encytpe="multipart/form-data">
+           {% csrf_token %}
+           <div class="form">
+
+               <input type="text" class="inputform" placeholder="First Name" id="FirstName" name="FirstName" onkeydown="validation()" required>
+
+
+               <input type="text" class="inputform" placeholder="Last Name" id="LastName" name="LastName" onkeydown="validation()" required>
+
+
+               <input type="email" class="inputform" placeholder="Email" id="Email" name="Email" onkeydown="validation()"required>
+
+
+               <textarea name="Message" id="Message" placeholder="Message" cols="30" rows="7" class="textareainputform"   onkeydown="validation()"required></textarea>
+
+                <input type="submit" value="Submit" class="submit"  >
+            </div>
+
+
+
+       </form>
+
+
+
+
+   </div>
+    <div class="svg">
+                  <img id="image" src="{% static 'login/img/illu2.svg' %}" style="width:650px "  />
+
     </div>
 </div>

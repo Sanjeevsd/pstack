@@ -1,6 +1,6 @@
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from . import views
+from .import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
@@ -11,5 +11,6 @@ urlpatterns = [
     path("", views.home, name="HOME"),
     path("home/", views.homepage, name="home"),
     path("uploadProject/", views.uploadproject),
+    path("home/contact/", views.contacts, name="Contacts"),
 ]
 urlpatterns += staticfiles_urlpatterns()

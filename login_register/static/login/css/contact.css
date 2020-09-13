@@ -1,0 +1,103 @@
+:root{
+    font-size: 16px;
+     font-family: 'Source Sans Pro';
+     --text-primary: #E5E5E5;
+     --text-secondary: #D0AC6E;
+     --bg-primary:#060608;
+     --bg-secondary:#424249;
+     background: var(--bg-primary);
+}
+.contactsection{
+    display: block;
+    flex-direction: row;
+    max-width: 35%;
+    min-height: 9rem;
+    padding-left: 10px;
+
+  }
+  .form {
+    display: block;
+    margin-top: 1rem;
+    padding-right: 1rem;
+    background: var(--bg-primary);
+
+    max-width: 100rem;
+    border: solid 0.1rem var(--bg-secondary);
+    overflow: auto;
+    word-wrap: break-word;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: var(--bg-secondary);
+  }
+  .form input[type=text],textarea{
+    margin-top: 0.5rem;
+
+    min-width: 97%;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+
+    padding: 0.2rem;
+    line-height: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: var(--bg-secondary);
+    border: solid 0.1rem var(--bg-secondary);
+  }
+  .form input[type=email]{
+    margin-top: 0.5rem;
+
+    min-width: 97%;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+
+    padding: 0.2rem;
+    line-height: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: var(--bg-secondary);
+    border: solid 0.1rem var(--bg-secondary);
+  }
+
+    .title{
+    font-size: 1.3rem;
+    text-align: center;
+    color: var(--text-secondary);
+    word-wrap: break-word;
+  }
+  .submit {
+    text-align: center;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #d0ac6e;
+    color: white;
+    border: none;
+    border-radius: 23px;
+    position: relative;
+    left:300px  ;
+    top: 8px;
+    width: 100px;
+    height: 1.5rem;
+    overflow: visible;
+
+
+
+  }
+  .svg{
+    margin-top: 1.5rem;
+    height: 150px;
+    max-width:40% ;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-primary);
+    flex-direction: row;
+    position: relative;
+    left: 500px;
+    bottom: 400px;
+
+
+  }
