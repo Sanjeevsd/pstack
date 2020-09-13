@@ -43,5 +43,7 @@ class ContactForm(models.Model):
     Email = models.EmailField(max_length=200)
     Message = models.TextField(max_length=300)
 
+    def __str__(self):
+        return self.Email+"-"+self.FirstName
     class Meta:
         db_table = "contact"
