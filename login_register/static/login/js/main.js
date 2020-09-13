@@ -78,12 +78,6 @@ var avatar = document.getElementById("profileavatarshow")
 avatar.onclick = function () {
     document.getElementById("profileavatarshowupload").click()
 }
-jQuery("#profileavatarshowupload").on("change", function () {
-    console.log("test");
-    console.log(this.files[0]);
-    var d = new FormData()
-    console.log(d.append("asdf", this.files[0]));
-});
 document.getElementById('profileavatarshowupload').addEventListener('change', handleFileSelect, false);
 
 function handleFileSelect(evt) {
@@ -176,8 +170,10 @@ $(document).ready(function () {
                 for (const [key, value] of Object.entries(response.Projects)) {
 
                     var json = $.parseJSON(value);
+
                     console.log(json[0]["fields"]["user"])
                 }
+                $("#uploadprojectModal").css("display", "none")
                 norify("pSuccess", "Proejct Uploaded", 1500)
             }
         });

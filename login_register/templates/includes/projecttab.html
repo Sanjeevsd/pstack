@@ -34,7 +34,7 @@
             <form id="uploadProjectform" method="post" enctype="multipart/form-data"> <span
                     class="mclose">&times;</span>
                 {% csrf_token %}
-                <input type="file" inputfiletext="Select" class="form-control-file" accept="application/pdf"
+                <input type="file" inputfiletext="Select" class="form-control-file" accept="application/pdf,pdf"
                     id="pfileupload" name="projectfileupload" placeholder="Select a pdf" required>
 
                 <button type="button" id="uploadProject">Upload Project</button> </form>
