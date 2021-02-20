@@ -8,8 +8,8 @@ class usersprofile(models.Model):
     user = models.OneToOneField(User,
                                 primary_key=True,
                                 on_delete=models.CASCADE)
-
-    skills = models.TextField(max_length=200, default="python")
+    cluster=models.IntegerField(null=True)
+    skills = models.TextField(max_length=200, default="")
     interests = models.TextField(max_length=200, default="", null=True)
     aboutme = models.TextField(max_length=300, default="")
     fblink = models.URLField(max_length=128, default="facebook.com")

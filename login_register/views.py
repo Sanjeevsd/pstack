@@ -3,8 +3,9 @@ from django.contrib.auth.models import auth, User
 from django.contrib import messages
 from nltk.util import pr
 from . import pdftext
-from rest_framework import viewsets
-from .models import usersprofile
+import pandas as pd
+from django.http import FileResponse, Http404
+import joblib
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
 from .models import usersprofile, projects
@@ -74,11 +75,22 @@ def signup(request):
 def homepage(request):
     if request.user.is_authenticated:
         all_projects = {}
+        tags=joblib.load('clusters.pkl')
+        user_cluster=tags[request.user.usersprofile.cluster]
+        df=pd.read_csv('indexedReport.csv')
         recommended_projects = {}
+        for index, row in df.iterrows():
+            d=row.to_dict()
+            proj={}
+            if d['label']==request.user.usersprofile.cluster:
+                proj['title']=d['title']
+                proj['fname']=d['fname']
+                proj['features']=user_cluster        
+                recommended_projects[index]=proj
         popular_projects = {}
         my_projects = {"a": projects.objects.filter(user=request.user)}
 
-        return render(request, "homem.html", my_projects)
+        return render(request, "homem.html", {'my_projects':my_projects,'features':user_cluster,'recommend':recommended_projects})
     else:
         return HttpResponseRedirect("/login")
 
@@ -107,7 +119,6 @@ def uploadproject(request):
                                   contents=body)
         project_update.save()
         project = projects.objects.filter(user=request.user)
-        # questions_by_category = [question.__dict__ for question in questions_by_category]
         serialized_data = {}
         for p in project:
             serialized_data[p.projectname] = serializers.serialize('json', [p])
@@ -116,6 +127,17 @@ def uploadproject(request):
     elif request.method == "GET":
         return HttpResponseRedirect('/')
 
+@login_required
+def viewPDF(request):
+    if request.method=='POST':
+        dirt=request.POST.get('fname')
+        print(dirt)
+        try:
+            return FileResponse(open('{}'.format(dirt), 'rb'), content_type='application/pdf')
+        except FileNotFoundError:
+            raise Http404()
+    else:
+        raise Http404()
 
 @login_required
 def updateProfile(request):
@@ -126,18 +148,23 @@ def updateProfile(request):
             form_data_dict[field["name"]] = field["value"]
         skills = form_data_dict['skills']
         interests = form_data_dict['interests']
+        kmeans=joblib.load('Kmodel.pkl')
+        tfidf=joblib.load('TFIDF.pkl')
+        vectorize=tfidf.transform([interests])
+        prediction_cluster=kmeans.predict(vectorize)
+        recomm_cluster=prediction_cluster[0]
         aboutme = form_data_dict['aboutme']
         fblink = form_data_dict['fblink']
         gitlink = form_data_dict['gitlink']
         usermodel = usersprofile.objects.get(user=request.user)
         if request.POST.get("ifimage") != "none":
             usermodel.avatar = request.FILES['image_form']
-
+        usermodel.cluster=recomm_cluster
         usermodel.skills = skills
-        usermodel.skillsinterests = interests
-        usermodel.skillsaboutme = aboutme
-        usermodel.skillsfblink = fblink
-        usermodel.skillsgitlink = gitlink
+        usermodel.interests = interests
+        usermodel.aboutme = aboutme
+        usermodel.fblink = fblink
+        usermodel.gitlink = gitlink
         try:
             usermodel.save()
         except:

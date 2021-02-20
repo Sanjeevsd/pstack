@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -123,5 +122,5 @@ MEDIA_URL = "/media/"
 AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
 LOGIN_REDIRECT_URL = "/"
-SITE_ID = 1
+
 django_heroku.settings(locals())

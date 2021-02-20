@@ -26,5 +26,9 @@ def pdf_to_txt(file):
     '''remove_unwanted_strings'''
     new_data = ''.join(c for c in removed_words if c not in punctuation)
     tab_removed = re.sub('\s+', ' ', new_data)
-    filtered_data = tab_removed.replace('−', '').replace('  ', '')
-    return title, filtered_data
+    num_removed= re.sub(r'\d', "", tab_removed)
+    spcl_word_removed=re.sub('\W_',' ', num_removed) 
+    asd=re.sub("[^a-zA-Z]+", " ", spcl_word_removed)
+    filtered_data = asd.replace('−', '').replace('  ', '').replace(u'\ufffd', '')
+
+    return title, filtered_data.casefold()

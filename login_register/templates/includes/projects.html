@@ -2,23 +2,23 @@
     <div class="profDetails">
         {% load static %}
         <img class="avatars" src="{% static 'login/img/avatar.jpg' %}" alt="#">
-        <a href="profile">@user</a>
+        <a href="profile">@{{user.username}}</a>
     </div>
     <div class="projectDetails">
-        <span class="ptitle">Title: something</span><br>
+        {% if title %}
+        <span class="ptitle">Title: {{title}}</span><br>
         <span class="descriptionn"> Description</span><br>
         <span class="pdescription">
-
-            {% if my_projects %}
-            {{my_projects}}
-            {% endif %}
-
-            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhjthing<br>
-            something<br> something<br> something<br>
-            something</span><br>
-        <span class="ptopics">Topics: something</span><br>
-        <span class="pcreator">Creator: something</span><br>
-
+            {{features}}<br>
+        <span class="ptopics">
+            <form action="/viewpdf/" method="post">
+                {%csrf_token %}
+                <input id="fname" name="fname" background="transparent" type="hidden" value="{{ fname }}">
+                <input type="submit" value="Report">
+            </form>
+        </span><br>
+        <span class="pcreator">Creator: </span><br>
+{%endif%}
     </div>
     <div class="projectInteractions">
 
