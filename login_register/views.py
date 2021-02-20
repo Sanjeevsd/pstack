@@ -80,8 +80,14 @@ def homepage(request):
         user_cluster=tags[request.user.usersprofile.cluster]
         df=pd.read_csv('indexedReport.csv')
         recommended_projects = {}
+
         for index, row in df.iterrows():
             d=row.to_dict()
+            ap={}
+            ap['title']=d['title']
+            ap['fname']=d['fname']
+            ap['features']=tags[d['label']]
+            all_projects[index]=ap
             proj={}
             if d['label']==request.user.usersprofile.cluster:
                 proj['title']=d['title']
@@ -89,9 +95,10 @@ def homepage(request):
                 proj['features']=user_cluster        
                 recommended_projects[index]=proj
         popular_projects = {}
+        print(all_projects)
         my_projects = {"a": projects.objects.filter(user=request.user)}
 
-        return render(request, "homem.html", {'my_projects':my_projects,'features':user_cluster,'recommend':recommended_projects})
+        return render(request, "homem.html", {'allproj':all_projects,'my_projects':my_projects,'features':user_cluster,'recommend':recommended_projects})
     else:
         return HttpResponseRedirect("/login")
 

@@ -8,7 +8,7 @@ class usersprofile(models.Model):
     user = models.OneToOneField(User,
                                 primary_key=True,
                                 on_delete=models.CASCADE)
-    cluster=models.IntegerField(null=True)
+    cluster=models.IntegerField(null=True,default=0)
     skills = models.TextField(max_length=200, default="")
     interests = models.TextField(max_length=200, default="", null=True)
     aboutme = models.TextField(max_length=300, default="")
