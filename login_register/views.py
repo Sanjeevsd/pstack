@@ -8,10 +8,11 @@ from django.http import FileResponse, Http404
 import joblib
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
-from .models import usersprofile, projects
+from .models import usersprofile, projects, ContactForm
 import json, random
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
+
 
 
 def loginpage(request):
@@ -103,6 +104,25 @@ def home(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect("/login")
+
+@login_required
+def contacts(request):
+    if request.method == 'POST':
+        FirstName = request.POST["FirstName"]
+        LastName = request.POST["LastName"]
+        Email = request.POST["Email"]
+        Message = request.POST["Message"]
+        print(FirstName)
+        contact_obj = ContactForm(FirstName=FirstName, LastName=LastName, Email=Email, Message=Message)
+        contact_obj.save()
+        return HttpResponseRedirect("/")
+
+
+
+
+
+
+
 
 
 @login_required
