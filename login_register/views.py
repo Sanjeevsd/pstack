@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
-from nltk.util import pr
+from pandas.core.base import DataError
 from . import pdftext
+from django.core.files.storage import FileSystemStorage
 import pandas as pd
 from django.http import FileResponse, Http404
 import joblib
@@ -12,8 +13,7 @@ from .models import usersprofile, projects, ContactForm
 import json, random
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
-
-
+from csv import writer
 
 def loginpage(request):
     if request.method == "POST":
@@ -80,7 +80,31 @@ def homepage(request):
         user_cluster=tags[request.user.usersprofile.cluster]
         df=pd.read_csv('indexedReport.csv')
         recommended_projects = {}
-
+        popular_projects = {}
+                
+        clusters=joblib.load('clusters.pkl')
+        data1=clusters[0]
+        for a,d2 in clusters.items():
+                l1=[]
+                l2=[]
+                unions=data1+d2
+                for w in unions: 
+                        if w in data1: l1.append(1)
+                        else: l1.append(0) 
+                        if w in d2: l2.append(1) 
+                        else: l2.append(0) 
+                c = 0
+                for i in range(len(unions)): 
+                        c+= l1[i]*l2[i] 
+                cosine = c / float((sum(l1)*sum(l2))**0.5) 
+                if(cosine>0.4):
+                        data1=list(set(data1)|set(d2))
+        ptag=data1
+        kmeans=joblib.load('Kmodel.pkl')
+        tfidf=joblib.load('TFIDF.pkl')
+        pop_pred_vec=tfidf.transform(["".join(data1)])
+        pop_pred=kmeans.predict(pop_pred_vec)
+        print(pop_pred[0])
         for index, row in df.iterrows():
             d=row.to_dict()
             ap={}
@@ -89,16 +113,22 @@ def homepage(request):
             ap['features']=tags[d['label']]
             all_projects[index]=ap
             proj={}
+            pop_proj={}
             if d['label']==request.user.usersprofile.cluster:
                 proj['title']=d['title']
                 proj['fname']=d['fname']
                 proj['features']=user_cluster        
                 recommended_projects[index]=proj
-        popular_projects = {}
-        print(all_projects)
+            if d['label']==pop_pred[0]:
+                pop_proj['title']=d['title']
+                pop_proj['fname']=d['fname']
+                pop_proj['features']="TAGS"        
+                popular_projects[index]=pop_proj
+                
+
         my_projects = {"a": projects.objects.filter(user=request.user)}
 
-        return render(request, "homem.html", {'allproj':all_projects,'my_projects':my_projects,'features':user_cluster,'recommend':recommended_projects})
+        return render(request, "homem.html", {'ptag':ptag,'pop_project':popular_projects,'allproj':all_projects,'my_projects':my_projects,'features':user_cluster,'recommend':recommended_projects})
     else:
         return HttpResponseRedirect("/login")
 
@@ -124,23 +154,26 @@ def contacts(request):
         contact_obj.save()
         return HttpResponseRedirect("/")
 
-
-
-
-
-
-
-
-
 @login_required
 def uploadproject(request):
     if request.method == "POST":
+        kmeans=joblib.load('Kmodel.pkl')
+        tfidf=joblib.load('TFIDF.pkl')
         file = request.FILES["projectfile"]
         title, body = pdftext.pdf_to_txt(file)
         if title == "error":
             messages.error(request, f"Invalid Project File {file}")
             return HttpResponseRedirect("/")
-
+        fs=FileSystemStorage()
+        fs.save(file.name,file)
+        tfidfvector=tfidf.transform([body])
+        predct_kmean=kmeans.predict(tfidfvector)
+        data = pd.read_csv('indexedReport.csv') 
+        totalInstances=len(data)+1
+        ls=[totalInstances, file.name,title,body,predct_kmean[0]]
+        with open('indexedReport.csv','a',newline='') as reports:
+            writer_obj=writer(reports)
+            writer_obj.writerow(ls)
         project_update = projects(user=request.user,
                                   projectname=title,
                                   contents=body)

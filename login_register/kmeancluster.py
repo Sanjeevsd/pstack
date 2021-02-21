@@ -36,8 +36,6 @@ def twoLetters(listOfTokens):
 
 def processCorpus(corpus, language):   
     stopwords = nltk.corpus.stopwords.words(language)
-    param_stemmer = SnowballStemmer(language)
-    lemmen=WordNetLemmatizer()
     for document in corpus:
         index = corpus.index(document)
         corpus[index] = str(corpus[index]).replace(u'\ufffd', '8')   # Replaces the ASCII '�' symbol with '8'
@@ -65,7 +63,7 @@ def processCorpus(corpus, language):
 
 language = 'english'
 corpus = processCorpus(corpus, language)
-print(corpus[18][0:460])
+# print(corpus[18][0:460])
 vectorizer = TfidfVectorizer(max_df=0.8, max_features=200000,
                                  min_df=0.2, stop_words='english',
                                  use_idf=True, ngram_range=(1,3))
@@ -74,9 +72,9 @@ tf_idf = pd.DataFrame(data = X.toarray(), columns=vectorizer.get_feature_names()
 
 final_df = tf_idf
 
-print("{} rows".format(final_df.shape[0]))
+# print("{} rows".format(final_df.shape[0]))
 final_df.T.nlargest(5, 0)
-print(final_df.T.nlargest(5, 0))
+# print(final_df.T.nlargest(5, 0))
 
 def run_KMeans(max_k, data):
     max_k += 1
@@ -155,12 +153,16 @@ def get_top_features_cluster(tf_idf_array, prediction, n_feats):
 def plotWords(dfs, n_feats):
     plt.figure(figsize=(8, 4))
     cluster_data={}
+    feature_data={}
     for i in range(0, len(dfs)):
-        plt.title(("Most Common Words in Cluster {}".format(i)), fontsize=10, fontweight='bold')
-        sns.barplot(x = 'score' , y = 'features', orient = 'h' , data = dfs[i][:n_feats])
+        # plt.title(("Most Common Words in Cluster {}".format(i)), fontsize=10, fontweight='bold')
+        # sns.barplot(x = 'score' , y = 'features', orient = 'h' , data = dfs[i][:n_feats])
+        feature_data[i]=dfs[i][:n_feats].to_dict()
         cluster_data[i]=(dfs[i][:n_feats]['features'].tolist())
-        plt.show()
-    # joblib.dump(cluster_data,'clusters.pkl')
+        # plt.show()
+    joblib.dump(cluster_data,'clusters.pkl')
+    joblib.dump(feature_data,'features.pkl')
+    
 best_result = 16
 kmeans = kmeans_results.get(best_result)
 
@@ -178,7 +180,7 @@ data['label'] = labels
 
 
 # saving the Labelled data
-# data.to_csv("indexedReport.csv",index=False)
+data.to_csv("indexedReport.csv",index=False)
 
 
 # Plotting the data

@@ -1,14 +1,12 @@
 <div class="main" id="projecttab">
     <div class="projectshowsecction">
-        {% include "includes/projects.html" %}
-        {% include "includes/projects.html" %}
-        {% include "includes/projects.html" %}
-        {% include "includes/projects.html" %}
-        {% include "includes/projects.html" %}
-        {% include "includes/projects.html" %}
-        {% include "includes/projects.html" %}
-        {% include "includes/projects.html" %}
-        {% include "includes/projects.html" %}
+        {% if my_projects %}
+        {{my_projects.a.0}}
+        {% for k in my_projects.a %}
+
+        {% include "includes/projects.html" with title=k.projectname feature=k.contents usernames=k.user %}
+        {%endfor%}
+        {% endif %}
     </div>
     <div class="projectuploadsection">
         <div id="uploadprojectsvg" class="uploadingbox">
