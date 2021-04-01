@@ -21,7 +21,7 @@ pytz==2019.3
 requests
 requests-oauthlib==1.3.0
 scikit-learn
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 scipy
 six==1.14.0
 sqlparse==0.3.0
